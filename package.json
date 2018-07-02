@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "", 
+    "heroku-postbuild": "cd client && npm i && yarn build", 
+    "start": "node app.js", 
     "dev": "concurrently \"node app.js\" \"cd client && yarn start\""
   },
   "dependencies": {
