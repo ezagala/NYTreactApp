@@ -36,7 +36,7 @@ app.use(function(err, req, res, next) {
 // Still need to define MONGODB_URI 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nytReact");
 
-
+// Fire up the server 
 app.listen(port, () => {
   console.log("Server started on port: " + port ); 
 }); 
