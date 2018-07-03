@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const mongoose = require("mongoose");
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -13,6 +14,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Route for testing purposes only
+// These routes will be scrapped and rebuilt to point to a routes directory
 app.get('/api/user', (req, res) => {
   res.status(200).json({username: "Eric Z."}); 
 });
@@ -35,6 +37,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
 });
+
+// Connect to the Mongo DB
+// Still need to define MONGODB_URI 
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nytReact");
 
 const port = process.env.PORT || '3001';
 
