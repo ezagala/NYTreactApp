@@ -1,11 +1,12 @@
-var createError = require('http-errors');
-var express = require('express');
+const createError = require('http-errors');
+const express = require('express');
 const mongoose = require("mongoose");
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const port = process.env.PORT || '3001';
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -13,15 +14,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Route for testing purposes only
-// These routes will be scrapped and rebuilt to point to a routes directory
-app.get('/api/user', (req, res) => {
-  res.status(200).json({username: "Eric Z."}); 
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + 'public/index.html')); 
-}); 
+// Add both API and view routes
+app.use(routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,7 +36,6 @@ app.use(function(err, req, res, next) {
 // Still need to define MONGODB_URI 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nytReact");
 
-const port = process.env.PORT || '3001';
 
 app.listen(port, () => {
   console.log("Server started on port: " + port ); 
