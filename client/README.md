@@ -1,3 +1,23 @@
+## NYT Article Curator User Stories 
+
+The user should be able to: 
+
+Search the NYT archives via their API 
+  -Search parameters
+    -Keyword 
+    -Range of publication dates
+      -Start & end 
+
+View the results of their search in a dynamic component 
+  -Each search result should be able to be saved to the DB
+
+View the articles they have saved to the DB 
+  -User should also be able to delete articles from the DB 
+
+******************************************************
+======================================================
+******************************************************
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
