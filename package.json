@@ -9,6 +9,7 @@
     "dev": "concurrently \"node server.js\" \"cd client && yarn start\""
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "concurrently": "^3.6.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
