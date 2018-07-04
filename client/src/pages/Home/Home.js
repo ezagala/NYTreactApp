@@ -5,7 +5,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Input, SearchBtn } from "../../components/Form";
 
 class Home extends Component {
     state = {
@@ -16,7 +16,7 @@ class Home extends Component {
     };
 
     componentDidMount() {
-        // this.loadArticles();
+        this.loadArticles();
     }
 
     loadArticles = () => {
@@ -70,12 +70,12 @@ class Home extends Component {
                                 name="endDate"
                                 placeholder="End Date"
                             />
-                            <searchBtn
+                            <SearchBtn
                                 disabled={!(this.state.topic && this.state.startDate)}
                                 onClick={this.handleFormSubmit}
                             >
-                                Submit Book
-                            </searchBtn>
+                                Search
+                            </SearchBtn>
                         </form>
                     </Col>
                 </Row>

@@ -1,12 +1,13 @@
 {
   "name": "nyt-react-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "heroku-prebuild": "rm -rf public/ && mkdir public",
     "heroku-postbuild": "cd client && npm i && npm run build",
-    "start": "node server.js",
-    "dev": "concurrently \"node server.js\" \"cd client && yarn start\""
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"node server.js\" \"cd client && yarn start\""
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -14,9 +15,10 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
+    "http-errors": "^1.6.3",
     "jade": "~1.11.0",
     "mongoose": "^5.2.1",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "react-router-dom": "^4.3.1"
   }
 }
