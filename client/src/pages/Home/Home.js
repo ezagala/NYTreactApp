@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import DatePicker from 'react-date-picker';
+import moment from 'moment';
 import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
@@ -11,8 +13,8 @@ class Home extends Component {
     state = {
         articles: [],
         topic: "",
-        startDate: null,
-        endDate: null
+        startDate: '',
+        endDate: ''
     };
 
     componentDidMount() {
@@ -40,9 +42,21 @@ class Home extends Component {
         });
     };
 
+    onStartDateChange = startDate => this.setState({ startDate })
+    onEndDateChange = endDate => this.setState({ endDate })
+
     handleFormSubmit = event => {
         event.preventDefault();
-        // This is where I'll handle the request to NYT's API
+        // Call to the NYT API 
+        if (this.state.topic && this.state.startDate) {
+        API.searchArticles({
+            topic: this.state.topic, 
+            startDate: moment(this.state.startDate).format("YYYYMMDD"), 
+            endDate: moment(this.state.endDate).format("YYYYMMDD")
+        })
+            .then(res => console.log("this is: ", res)) //or console log this)
+            .catch(err => console.log(err));
+        }
     };
 
     render() {
@@ -51,6 +65,7 @@ class Home extends Component {
                 <Row>
                     <Col size="md-6">
                         <h1>Search</h1>
+                        <hr/    >
                         <form>
                             <Input
                                 value={this.state.topic}
@@ -58,17 +73,16 @@ class Home extends Component {
                                 name="topic"
                                 placeholder="Topic (required)"
                             />
-                            <Input
+                            <DatePicker
                                 value={this.state.startDate}
-                                onChange={this.handleInputChange}
+                                onChange={this.onStartDateChange}
                                 name="startDate"
-                                placeholder="Start Date (required)"
+                                style={{marginBottom: 10, marginRight: 15}}
                             />
-                            <Input
+                            <DatePicker
                                 value={this.state.endDate}
-                                onChange={this.handleInputChange}
+                                onChange={this.onEndDateChange}
                                 name="endDate"
-                                placeholder="End Date"
                             />
                             <SearchBtn
                                 disabled={!(this.state.topic && this.state.startDate)}
@@ -78,10 +92,9 @@ class Home extends Component {
                             </SearchBtn>
                         </form>
                     </Col>
-                </Row>
-                <Row>
                     <Col size="md-6 sm-12">
                         <h1>Results</h1>
+                        <hr/>
                         {this.state.articles.length ? (
                             <List>
                                 {this.state.articles.map(article => (

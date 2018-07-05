@@ -1,7 +1,7 @@
 import React from "react";
 
 export const SearchBtn = props => (
-  <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-primary">
+  <button {...props} style={{marginBottom: 10 }} className="btn btn-outline-primary btn-block">
     {props.children}
   </button>
 );

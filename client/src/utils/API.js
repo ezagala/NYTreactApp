@@ -1,6 +1,10 @@
 import axios from "axios";
 
 export default {
+  // Search for articles
+  searchArticles: function(articleData) {
+    return axios.get("/api/search", articleData); 
+  },
   // Gets all
   getArticles: function() {
     return axios.get("/api/articles");
