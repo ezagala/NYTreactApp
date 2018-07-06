@@ -1,5 +1,4 @@
 const db = require("../models");
-const axios = require("axios");
 
 module.exports = {
   findAll: function(req, res) {
@@ -33,9 +32,5 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  },
-  search: function(req, res) {
-    // Hit the NYT API here, I think
-  } 
-
+  }
 };

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import DatePicker from 'react-date-picker';
 import moment from 'moment';
 import DeleteBtn from "../../components/DeleteBtn";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
@@ -21,12 +20,9 @@ class Home extends Component {
         this.loadArticles();
     }
 
-    loadArticles = () => {
-        API.getArticles()
-            .then(res =>
-                this.setState({ articles: res.data, title: "", date: null, url: "" })
-            )
-            .catch(err => console.log(err));
+    loadArticles = (data) => {
+        // parse and render response from the API here 
+        console.log(data);
     };
 
     deleteArticle = id => {
@@ -47,14 +43,24 @@ class Home extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+
         // Call to the NYT API 
+        console.log(`
+        The topic is ${this.state.topic}
+        startDate is ${this.state.startDate}
+        endDate is ${this.state.endDate}
+        `)
+
         if (this.state.topic && this.state.startDate) {
         API.searchArticles({
-            topic: this.state.topic, 
-            startDate: moment(this.state.startDate).format("YYYYMMDD"), 
+            topic: this.state.topic,
+            startDate: moment(this.state.startDate).format("YYYYMMDD"),
             endDate: moment(this.state.endDate).format("YYYYMMDD")
         })
-            .then(res => console.log("this is: ", res)) //or console log this)
+            .then(res => { 
+                const artArray = res.data.response.docs
+                this.loadArticles(artArray); 
+            })
             .catch(err => console.log(err));
         }
     };
@@ -65,7 +71,7 @@ class Home extends Component {
                 <Row>
                     <Col size="md-6">
                         <h1>Search</h1>
-                        <hr/    >
+                        <hr />
                         <form>
                             <Input
                                 value={this.state.topic}
@@ -77,7 +83,7 @@ class Home extends Component {
                                 value={this.state.startDate}
                                 onChange={this.onStartDateChange}
                                 name="startDate"
-                                style={{marginBottom: 10, marginRight: 15}}
+                                style={{ marginBottom: 10, marginRight: 15 }}
                             />
                             <DatePicker
                                 value={this.state.endDate}
@@ -94,7 +100,7 @@ class Home extends Component {
                     </Col>
                     <Col size="md-6 sm-12">
                         <h1>Results</h1>
-                        <hr/>
+                        <hr />
                         {this.state.articles.length ? (
                             <List>
                                 {this.state.articles.map(article => (

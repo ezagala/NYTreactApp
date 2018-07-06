@@ -8,7 +8,7 @@ router.route("/")
 
 // Matches with "/api/articles/search"
 router.route("/search")
-  .get(articlesController.search)
+  .post(articlesController.search)
 
 // Matches with "/api/articles/:id"
 router

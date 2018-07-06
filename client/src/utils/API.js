@@ -2,8 +2,13 @@ import axios from "axios";
 
 export default {
   // Search for articles
-  searchArticles: function(articleData) {
-    return axios.get("/api/search", articleData); 
+  searchArticles: function(data) {
+    let queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    queryURL += "?api-key=fdc18b9b249f467aa2f64b5312a76fad";
+    queryURL += "&q=" + data.topic;
+    queryURL += "&begin_date=" + data.startDate;
+    queryURL += "&end_date=" + data.endDate;
+    return axios.get(queryURL)
   },
   // Gets all
   getArticles: function() {
