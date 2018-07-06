@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import DatePicker from 'react-date-picker';
 import moment from 'moment';
-import DeleteBtn from "../../components/DeleteBtn";
+import SaveBtn from "../../components/SaveBtn";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
@@ -21,8 +21,11 @@ class Home extends Component {
     }
 
     loadArticles = (data) => {
-        // parse and render response from the API here 
-        console.log(data);
+        // Data cannont be undefined b/c this is fired when the component mounts    
+        if (data) { 
+            this.setState({articles: data});
+        }
+        console.log("State.articles upated to: ", this.state.articles); 
     };
 
     deleteArticle = id => {
@@ -107,10 +110,10 @@ class Home extends Component {
                                     <ListItem key={article._id}>
                                         <Link to={"/articles/" + article._id}>
                                             <strong>
-                                                {article.title}
+                                                {article.headline.main}
                                             </strong>
                                         </Link>
-                                        <DeleteBtn onClick={() => this.deleteBook(article._id)} />
+                                        <SaveBtn onClick={() => this.deleteBook(article._id)} />
                                     </ListItem>
                                 ))}
                             </List>
