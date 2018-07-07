@@ -22,15 +22,36 @@ class Home extends Component {
 
     loadArticles = (data) => {
         // Data cannont be undefined b/c this is fired when the component mounts    
-        if (data) { 
-            this.setState({articles: data});
+        if (data) {
+            this.setState({ articles: data });
+            console.log("State.articles upated to: ", this.state.articles);
         }
-        console.log("State.articles upated to: ", this.state.articles); 
+        
     };
 
-    deleteArticle = id => {
-        API.deleteArticle(id)
-            .then(res => this.loadArticles())
+    saveArticle = id => {
+        // Define payload
+        const newArticle = {};
+        // Loop through current articles and build out the payload 
+        this.state.articles.forEach(x => {
+            if (x._id === id) {
+                newArticle.nytId = x._id;
+                newArticle.title = x.headline.main;
+                newArticle.date = x.pub_date;
+                newArticle.url = x.web_url;
+            }
+        })
+        // Send off the payload to be saved, then remove the article from the list
+        API.saveArticle(newArticle)
+            .then(res => {
+                this.state.articles.forEach(x => {
+                    if (x._id === res.data.nytId) {
+                        this.state.articles.splice(this.state.articles.indexOf(x._id), 1);
+                        
+                    }
+                })
+                return this.loadArticles(this.state.articles)
+            })
             .catch(err => console.log(err));
     };
 
@@ -55,16 +76,16 @@ class Home extends Component {
         `)
 
         if (this.state.topic && this.state.startDate) {
-        API.searchArticles({
-            topic: this.state.topic,
-            startDate: moment(this.state.startDate).format("YYYYMMDD"),
-            endDate: moment(this.state.endDate).format("YYYYMMDD")
-        })
-            .then(res => { 
-                const artArray = res.data.response.docs
-                this.loadArticles(artArray); 
+            API.searchArticles({
+                topic: this.state.topic,
+                startDate: moment(this.state.startDate).format("YYYYMMDD"),
+                endDate: moment(this.state.endDate).format("YYYYMMDD")
             })
-            .catch(err => console.log(err));
+                .then(res => {
+                    const artArray = res.data.response.docs
+                    this.loadArticles(artArray);
+                })
+                .catch(err => console.log(err));
         }
     };
 
@@ -113,7 +134,7 @@ class Home extends Component {
                                                 {article.headline.main}
                                             </strong>
                                         </Link>
-                                        <SaveBtn onClick={() => this.deleteBook(article._id)} />
+                                        <SaveBtn onClick={() => this.saveArticle(article._id)} />
                                     </ListItem>
                                 ))}
                             </List>
