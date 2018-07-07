@@ -20,7 +20,7 @@ class Home extends Component {
         this.loadArticles();
     }
 
-    loadArticles = (data) => {
+    loadArticles = data => {
         // Data cannont be undefined b/c this is fired when the component mounts    
         if (data) {
             this.setState({ articles: data });
@@ -129,11 +129,11 @@ class Home extends Component {
                             <List>
                                 {this.state.articles.map(article => (
                                     <ListItem key={article._id}>
-                                        <Link to={article.web_url}>
+                                        <a href={article.web_url}>
                                             <strong>
                                                 {article.headline.main}
                                             </strong>
-                                        </Link>
+                                        </a>
                                         <SaveBtn onClick={() => this.saveArticle(article._id)} />
                                     </ListItem>
                                 ))}

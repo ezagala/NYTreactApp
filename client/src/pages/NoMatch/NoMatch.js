@@ -8,6 +8,7 @@ const NoMatch = () => (
       <Col size="md-12">
         <Jumbotron>
           <h1>404 Page Not Found</h1>
+          <hr/>
           <h1>
             <span>
               Check yo self sucka... 
