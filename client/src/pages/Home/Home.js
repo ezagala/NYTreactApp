@@ -46,11 +46,11 @@ class Home extends Component {
             .then(res => {
                 this.state.articles.forEach(x => {
                     if (x._id === res.data.nytId) {
-                        this.state.articles.splice(this.state.articles.indexOf(x._id), 1);
-                        
+                        this.state.articles.splice(this.state.articles.indexOf(x), 1);
+                        return this.loadArticles(this.state.articles)
                     }
                 })
-                return this.loadArticles(this.state.articles)
+                
             })
             .catch(err => console.log(err));
     };
@@ -129,7 +129,7 @@ class Home extends Component {
                             <List>
                                 {this.state.articles.map(article => (
                                     <ListItem key={article._id}>
-                                        <Link to={"/articles/" + article._id}>
+                                        <Link to={article.web_url}>
                                             <strong>
                                                 {article.headline.main}
                                             </strong>
