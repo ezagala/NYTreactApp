@@ -33,9 +33,17 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
 });
 
+const uriString = process.env.MONGODB_URI || "mongodb://localhost/nytReact"; 
+
 // Connect to the Mongo DB
 // Still need to define MONGODB_URI 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nytReact");
+mongoose.connect(uriString, (err, res) => {
+  if (err) {
+    console.log ('ERROR connecting to: ' + uriString + '. ' + err);
+    } else {
+    console.log ('Succeeded connected to: ' + uriString);
+    }
+});
 
 // Fire up the server 
 app.listen(port, () => {
