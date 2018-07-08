@@ -24,7 +24,7 @@ class Saved extends Component {
 
   deleteArticle = id => {
     API.deleteArticle(id)
-      .then(res => this.loadAricles())
+      .then(res => this.loadArticles())
       .catch(err => console.log(err));
   };
 
