@@ -1,3 +1,5 @@
+&& mv -v ../build/* ../public/
+
 ## NYT Article Curator User Stories 
 
 The user should be able to: 
