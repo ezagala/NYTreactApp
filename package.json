@@ -1,6 +1,9 @@
 {
   "name": "nyt-react-app",
   "version": "0.1.0",
+  "engines": {
+    "node": "8.9.0"
+  },
   "private": true,
   "scripts": {
     "heroku-prebuild": "rm -rf public/ && mkdir public",
@@ -18,7 +21,7 @@
     "express": "~4.16.0",
     "http-errors": "^1.6.3",
     "jade": "~1.11.0",
-    "mongoose": "^5.2.1",
+    " ongoose": "^5.2.1",
     "morgan": "~1.9.0",
     "react-date-picker": "^6.10.4",
     "react-router-dom": "^4.3.1"
