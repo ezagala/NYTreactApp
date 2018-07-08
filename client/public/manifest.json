@@ -1,8 +1,0 @@
-{
-  "short_name": "NYT Curator",
-  "name": "New York Times Article Curator",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
-}
