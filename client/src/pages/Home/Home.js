@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import DatePicker from 'react-date-picker';
+import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import SaveBtn from "../../components/SaveBtn";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, SearchBtn } from "../../components/Form";
+import 'react-datepicker/dist/react-datepicker.css';
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 class Home extends Component {
     state = {
@@ -84,6 +86,7 @@ class Home extends Component {
                 .then(res => {
                     const artArray = res.data.response.docs
                     this.loadArticles(artArray);
+                    console.log("artArray: ", artArray)
                 })
                 .catch(err => console.log(err));
         }
@@ -104,13 +107,12 @@ class Home extends Component {
                                 placeholder="Topic (required)"
                             />
                             <DatePicker
-                                value={this.state.startDate}
+                                selected={this.state.startDate}
                                 onChange={this.onStartDateChange}
                                 name="startDate"
-                                style={{ marginBottom: 10, marginRight: 15 }}
                             />
                             <DatePicker
-                                value={this.state.endDate}
+                                selected={this.state.endDate}
                                 onChange={this.onEndDateChange}
                                 name="endDate"
                             />
