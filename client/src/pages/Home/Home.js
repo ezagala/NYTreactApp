@@ -8,6 +8,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, SearchBtn } from "../../components/Form";
 import 'react-datepicker/dist/react-datepicker.css';
+import './Home.css'
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 class Home extends Component {
@@ -106,17 +107,25 @@ class Home extends Component {
                                 name="topic"
                                 placeholder="Topic (required)"
                             />
-                            <DatePicker
-                                selected={this.state.startDate}
-                                onChange={this.onStartDateChange}
-                                name="startDate"
-                            />
-                            <DatePicker
-                                selected={this.state.endDate}
-                                onChange={this.onEndDateChange}
-                                name="endDate"
-                            />
-                            <SearchBtn
+                            <Row> 
+                                <Col size="md-4"> 
+                                    <DatePicker className="dates"
+                                        selected={this.state.startDate}
+                                        onChange={this.onStartDateChange}
+                                        name="startDate"
+                                        placeholderText="Click to select a start date"
+                                    />
+                                </Col>
+                                <Col size="md-4">
+                                    <DatePicker className="dates"
+                                        selected={this.state.endDate}
+                                        onChange={this.onEndDateChange}
+                                        name="endDate"
+                                        placeholderText="Click to select a end date"
+                                    />
+                                </Col>
+                            </Row> 
+                            <SearchBtn id="search"
                                 disabled={!(this.state.topic && this.state.startDate)}
                                 onClick={this.handleFormSubmit}
                             >
