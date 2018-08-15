@@ -30,14 +30,14 @@ cd .. && yarn start
 
 ## Built with 
 
--Axios 
--Express 
--Moment
--Mongo/Mongoose 
--React (w/ Creat React App)
--React date picker 
+- Axios 
+- Express 
+- Moment
+- Mongo/Mongoose 
+- React (w/ Creat React App)
+- React date picker 
 
 ## Authors 
 
-[Me] (https://github.com/ezagala), myself and I!
+[Me](https://github.com/ezagala), myself and I!
 
