@@ -105,7 +105,7 @@ class Home extends Component {
                                 value={this.state.topic}
                                 onChange={this.handleInputChange}
                                 name="topic"
-                                placeholder="Topic (required)"
+                                placeholder="Search Term(s) (required)"
                             />
                             <Row> 
                                 <Col size="md-4"> 

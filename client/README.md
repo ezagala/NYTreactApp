@@ -1,20 +1,48 @@
-&& mv -v ../build/* ../public/
+# NYT Article Curator
 
-## NYT Article Curator User Stories 
+This article curator quereies the New York Times archive via the paper's arcive_api. It allows users to specify a search term and a date range to narrow results. Search results are links to the articles and may be saved for later reference. 
 
-The user should be able to: 
+## Usage
 
-Search the NYT archives via their API 
-  -Search parameters
-    -Keyword 
-    -Range of publication dates
-      -Start & end 
+Enter a search term, specify a start and end date and select search. Voila! 
 
-View the results of their search in a dynamic component 
-  -Each search result should be able to be saved to the DB
+## Getting started 
 
-View the articles they have saved to the DB 
-  -User should also be able to delete articles from the DB 
+These instructions will get you a copy of the project up and running on your local machine.
+
+### Prerequisites 
+
+Ensure you have NPM, NodeJS and Yarn installed
+
+### Installing 
+
+If/after you've installed the above run: 
+
+```
+yarn install && cd client && yarn install 
+```
+
+And then: 
+
+```
+cd .. && yarn start 
+```
+
+## Built with 
+
+-Axios 
+-Express 
+-Moment
+-Mongo/Mongoose 
+-React (w/ Creat React App)
+-React date picker 
+
+## Authors 
+
+[Me] (https://github.com/ezagala), myself and I!
+
+
+
 
 ******************************************************
 ======================================================
