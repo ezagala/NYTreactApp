@@ -6,6 +6,8 @@ This article curator quereies the New York Times archive via the paper's arcive_
 
 Enter a search term, specify a start and end date and select search. Voila! 
 
+Search results may also be saved for later reference. 
+
 ## Getting started 
 
 These instructions will get you a copy of the project up and running on your local machine.
