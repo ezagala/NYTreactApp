@@ -2,6 +2,8 @@
 
 This article curator quereies the New York Times archive via the paper's arcive_api. It allows users to specify a search term and a date range to narrow results. Search results are links to the articles and may be saved for later reference. 
 
+The app is deployed [here](https://remembrance-drake-33191.herokuapp.com/).
+
 ## Usage
 
 Enter a search term, specify a start and end date and select search. Voila! 
@@ -36,7 +38,7 @@ cd .. && yarn start
 - Express 
 - Moment
 - Mongo/Mongoose 
-- React (w/ Creat React App)
+- React
 - React date picker 
 
 ## Authors 
